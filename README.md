@@ -35,4 +35,7 @@
 
 ## Структура
 
-- `index.html` —
+- `index.html` — разметка страницы
+- `style.css` — стили
+- `script.js` — скрипт
+- `images/` — фотографии
