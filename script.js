@@ -34,6 +34,20 @@ function getSum(numbers) {
   return sum;
 }
 
+function countLowCalorie(numbers, limit) {
+  let count = 0;
+
+  for (const value of numbers) {
+    if (value <= limit) {
+      count++;
+    }
+  }
+
+  const share = Math.round((count / numbers.length) * 100);
+
+  return { count: count, share: share };
+}
+
 const userName = prompt("Как вас зовут?", "Гость");
 
 if (userName) {
@@ -48,16 +62,7 @@ const total = getSum(calories);
 const highCalorie = filterHigh(calories, 600);
 const highTotal = getSum(highCalorie);
 const maxCalorie = findMax(calories);
-
-let lowCount = 0;
-
-for (const value of calories) {
-  if (value <= 300) {
-    lowCount++;
-  }
-}
-
-const lowShare = Math.round((lowCount / calories.length) * 100);
+const lowCalorie = countLowCalorie(calories, 300);
 
 alert(
   "Суммарная калорийность — " + total + " ккал, из них " +
@@ -66,8 +71,8 @@ alert(
 
 console.log("Максимальная калорийность:", maxCalorie, "ккал");
 console.log("Высококалорийные блюда (> 600 ккал):", highCalorie);
-console.log("Низкокалорийных блюд (≤ 300 ккал):", lowCount, "из", calories.length);
-console.log("Их доля:", lowShare + "%");
+console.log("Низкокалорийных блюд (≤ 300 ккал):", lowCalorie.count, "из", calories.length);
+console.log("Их доля:", lowCalorie.share + "%");
 
 if (total > 3000) {
   console.log("Такой рацион лучше распределить на 2 дня");
